@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/models/pokemon_model.dart';
 import 'package:pokedex/ui/pages/charmanderPages.dart';
+import 'package:pokedex/ui/pages/pokemonHistory.dart'; // Importamos la nueva página
+import 'package:pokedex/ui/pages/playMew.dart'; // Importamos la página de Mew
 
 void main() {
   runApp(MyApp());
@@ -50,48 +52,88 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   @override
-Widget build(BuildContext context) {
-  return MaterialApp(
-    title: 'Flutter Demo',
-    theme: ThemeData(
-      primaryColor: Colors.red,
-      textTheme: TextTheme(),
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      useMaterial3: true,
-    ),
-    home: Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primaryColor: Colors.red,
+        textTheme: TextTheme(),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(onPressed: () {}, icon: Icon(Icons.menu))
-        ],
-        backgroundColor: Colors.white,
-        flexibleSpace: Center(
-          child: Text(
-            "Pokedex",
-            style: TextStyle(color: Colors.black),
+      home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.add),
+        ),
+        appBar: AppBar(
+          actions: <Widget>[
+            IconButton(onPressed: () {}, icon: Icon(Icons.menu))
+          ],
+          backgroundColor: Colors.white,
+          flexibleSpace: Center(
+            child: Text(
+              "Pokedex",
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        ),
+        body: Container(
+          color: Color.fromARGB(255, 255, 0, 0),
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView(
+                  children: <Widget>[
+                    customListTile(pikachu),
+                    customListTile(charmander),
+                    customListTile(bulbasaur),
+                    customListTile(squirtle),
+                    customListTile(jigglypuff),
+                    customListTile(meowth),
+                    customListTile(psyduck),
+                    customListTile(machop),
+                    customListTile(gengar),
+                  ],
+                ),
+              ),
+              Builder(
+                builder: (BuildContext context) {
+                  return Column(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PokemonHistoryPage()),
+                          );
+                        },
+                        child: Text('History Pokemon'),
+                      ),
+                      SizedBox(height: 16), // Espacio entre botones
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PlayMewPage()),
+                          );
+                        },
+                        child: Text('Play with Mew'),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),
-      body: Container(
-        color: Color.fromARGB(255, 255, 0, 0),
-        child: ListView(
-          children: <Widget>[
-            customListTile(pikachu),
-            customListTile(charmander),
-            customListTile(bulbasaur),
-            customListTile(squirtle),
-            customListTile(jigglypuff),
-            customListTile(meowth),
-            customListTile(psyduck),
-            customListTile(machop),
-            customListTile(gengar),
-          ],
-        ),
-      ),
-    ),
-  );
-}}
+    );
+  }
+}
+
+
+
+
